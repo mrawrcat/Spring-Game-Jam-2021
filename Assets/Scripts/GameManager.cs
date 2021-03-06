@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 
     public float Spring_Dewdrop;
     public float apple;
-    public float Tree_Health;
-
+    public float Main_Tree_Health;
+    public float Main_Tree_Level;
     private void Awake()
     {
         if (manager == null)

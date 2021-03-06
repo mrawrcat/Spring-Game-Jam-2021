@@ -66,6 +66,11 @@ public class MainTreeBuyDrop : MonoBehaviour
         
     }
 
+    public void Main_Tree_Take_Dmg(float dmg)
+    {
+        GameManager.manager.Main_Tree_Health -= dmg;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")
