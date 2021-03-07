@@ -157,12 +157,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 20
+  jumpForce: 15
   slideSpeed: 1
   wallJumped: 0
-  groundtime: 0.05
-  WallJumpLeft: {x: 10, y: 3}
-  WallJumpRight: {x: -10, y: 3}
+  groundtime: 0.3
+  WallJumpLeft: {x: 7, y: 10}
+  WallJumpRight: {x: -7, y: 10}
   bottomOffset: {x: 0, y: -0.4}
   boxSize: {x: 0.5, y: 0.2}
   lOffset: {x: -0.27, y: 0}

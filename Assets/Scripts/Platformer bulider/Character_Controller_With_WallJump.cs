@@ -14,6 +14,7 @@ public class Character_Controller_With_WallJump : MonoBehaviour
     private float moveInputY;
     private Rigidbody2D rb2d;
     private Animator anim;
+    private SpriteRenderer sr;
     private bool faceR = true;
 
     private bool canMove;
@@ -50,11 +51,14 @@ public class Character_Controller_With_WallJump : MonoBehaviour
     private int wallSide;
     [SerializeField]
     private LayerMask whatIsGround;
+
+
     // Start is called before the first frame update
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -89,12 +93,6 @@ public class Character_Controller_With_WallJump : MonoBehaviour
 
         Walk(dir);
         WallSlide();
-        
-        if (!onWall)
-        {
-            //wallSlide = false;
-        }
-        
 
         JumpCheck();
     }
@@ -142,6 +140,7 @@ public class Character_Controller_With_WallJump : MonoBehaviour
             {
                 //anim.SetTrigger("jump");
                 Jump(Vector2.up);
+                groundcounter = 0;
                 
             }
             if (onWall && !isGrounded)
@@ -189,7 +188,15 @@ public class Character_Controller_With_WallJump : MonoBehaviour
     {
         anim.SetFloat("MoveInputX", Mathf.Abs(moveInputX));
         anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("onWall", onWall);
+        anim.SetFloat("VerticalVelocity", rb2d.velocity.y);
     }
+    private void SpriteFlip(int side)
+    {
+        bool state = (side == 1) ? false : true;
+        sr.flipX = state;
+    }
+
     private void Flip()
     {
         faceR = !faceR;
@@ -221,7 +228,7 @@ public class Character_Controller_With_WallJump : MonoBehaviour
         canMove = true;
     }
 
-
+    
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
