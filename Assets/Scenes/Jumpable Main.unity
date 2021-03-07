@@ -161,8 +161,8 @@ MonoBehaviour:
   slideSpeed: 1
   wallJumped: 0
   groundtime: 0.05
-  WallJumpLeft: {x: -1, y: 3}
-  WallJumpRight: {x: 1, y: 3}
+  WallJumpLeft: {x: 10, y: 3}
+  WallJumpRight: {x: -10, y: 3}
   bottomOffset: {x: 0, y: -0.4}
   boxSize: {x: 0.5, y: 0.2}
   lOffset: {x: -0.27, y: 0}
