@@ -10,7 +10,7 @@ public class Varmint : MonoBehaviour
     [SerializeField]
     private float speed = 1f;
     private bool faceR = false;
-
+    private float health = 100;
     [Header("Obstacle Detection")]
     [SerializeField]
     private Transform detection;
@@ -95,31 +95,16 @@ public class Varmint : MonoBehaviour
         anim.SetTrigger("Attack");
     }
 
-    /*
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Take_Dmg(float dmg)
     {
-        if(collision.collider.tag == "Obstacle")
+        health -= dmg;
+        if(health <= 0)
         {
-            detectedObstacle = true;
+            //play death animation then setactive false
+            gameObject.SetActive(false);
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Obstacle")
-        {
-            detectedObstacle = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Obstacle")
-        {
-            detectedObstacle = false;
-        }
-    }
-    */
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Obstacle")

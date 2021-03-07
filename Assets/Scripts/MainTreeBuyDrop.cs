@@ -8,11 +8,19 @@ public class MainTreeBuyDrop : MonoBehaviour
 
     [SerializeField]
     private Slider mainTree_Progress;
+    [SerializeField]
+    private Text levelTxt;
+    [SerializeField]
+    private Text amtNeededTxt;
+    private float amtNeeded;
+    public float level;
     private bool pressingDown;
     [SerializeField]
     private float dropActionRate;
     private float progress;
     private bool inTree;
+
+
     [SerializeField]
     private ObjectPoolNS applePool;
     [SerializeField]
@@ -22,53 +30,73 @@ public class MainTreeBuyDrop : MonoBehaviour
     {
         mainTree_Progress.minValue = 0;
         mainTree_Progress.maxValue = 100;
-
+        level = 1;
+        amtNeeded = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        pressingDown = Input.GetKey(KeyCode.S);
+        pressingDown = Input.GetKey(KeyCode.E);
         mainTree_Progress.value = progress;
+        levelTxt.text = "LVL: " + level.ToString();
+        amtNeededTxt.text = amtNeeded.ToString();
 
-        while(dropActionRate > 0)
+
+        if(GameManager.manager.Spring_Dewdrop >= amtNeeded)
+        {
+            if (progress == 100)
+            {
+
+                applePool.SpawnCoin(dropPoint1);
+                GameManager.manager.Spring_Dewdrop -= amtNeeded;
+                amtNeeded *= 2;
+                level++;
+                progress = 0;
+                dropActionRate = 1;
+
+            }
+
+            if (inTree)
+            {
+                if (pressingDown)
+                {
+                    if (dropActionRate <= 0)
+                    {
+                        progress++;
+                        Debug.Log("interacting with tree from tree");
+                    }
+                }
+
+
+                if (Input.GetKeyUp(KeyCode.E))
+                {
+                    progress = 0;
+                    //dropActionRate = 1;
+                }
+            }
+        }
+        
+    }
+    private void FixedUpdate()
+    {
+        while (dropActionRate > 0)
         {
             dropActionRate -= Time.deltaTime;
         }
-
-        if(progress == 100)
-        {
-            applePool.SpawnCoin(dropPoint1);
-            progress = 0;
-            dropActionRate = 1;
-
-        }
-
-        if (inTree)
-        {
-            if (pressingDown)
-            {
-                if (dropActionRate <= 0)
-                {
-                    progress++;
-                    Debug.Log("interacting with tree from tree");
-                }
-            }
-
-
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                progress = 0;
-                //dropActionRate = 1;
-            }
-        }
-
-        
     }
 
     public void Main_Tree_Take_Dmg(float dmg)
     {
         GameManager.manager.Main_Tree_Health -= dmg;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            inTree = true;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -86,7 +114,6 @@ public class MainTreeBuyDrop : MonoBehaviour
         {
             inTree = false;
             progress = 0;
-            Debug.Log("left tree");
         }
     }
 

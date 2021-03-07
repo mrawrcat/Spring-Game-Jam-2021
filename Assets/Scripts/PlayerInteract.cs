@@ -52,7 +52,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            GameManager.manager.Spring_Dewdrop--;
+            GameManager.manager.apple--;
             objpool.SpawnCoin(coinSpawnpoint);
         }
         
