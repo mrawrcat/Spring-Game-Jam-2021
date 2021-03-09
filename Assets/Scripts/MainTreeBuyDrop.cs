@@ -20,7 +20,8 @@ public class MainTreeBuyDrop : MonoBehaviour
     private float progress;
     private bool inTree;
 
-
+    [SerializeField]
+    private float spawnforce;
     [SerializeField]
     private ObjectPoolNS applePool;
     [SerializeField]
@@ -48,7 +49,7 @@ public class MainTreeBuyDrop : MonoBehaviour
             if (progress == 100)
             {
 
-                applePool.SpawnCoin(dropPoint1);
+                applePool.SpawnCoin(dropPoint1, spawnforce);
                 GameManager.manager.Spring_Dewdrop -= amtNeeded;
                 amtNeeded *= 2;
                 level++;

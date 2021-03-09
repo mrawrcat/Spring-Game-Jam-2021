@@ -228,7 +228,23 @@ public class Character_Controller_With_WallJump : MonoBehaviour
         canMove = true;
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Platform")
+        {
+            transform.parent = collision.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Platform")
+        {
+            transform.parent = null;
+        }
+    }
+
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

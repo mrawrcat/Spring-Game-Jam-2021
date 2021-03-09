@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Main Tree
   - Obstacle
+  - Platform
   layers:
   - Default
   - TransparentFX

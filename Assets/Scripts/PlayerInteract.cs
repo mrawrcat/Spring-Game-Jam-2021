@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    [SerializeField]
     private float moveInputY;
-    [SerializeField]
     private float pressTime;
-    [SerializeField]
     private float pressTimeNext;
-    [SerializeField]
     private bool pressingDown;
     private bool inInteractable;
+    [SerializeField]
+    private float spawnforce;
     [SerializeField]
     private Transform coinSpawnpoint;
     [SerializeField]
@@ -53,7 +51,7 @@ public class PlayerInteract : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             GameManager.manager.apple--;
-            objpool.SpawnCoin(coinSpawnpoint);
+            objpool.SpawnCoin(coinSpawnpoint, spawnforce);
         }
         
     }

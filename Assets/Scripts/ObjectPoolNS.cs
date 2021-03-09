@@ -112,7 +112,7 @@ public class ObjectPoolNS : MonoBehaviour
     }
 
 
-    public GameObject SpawnCoin(string tag, Transform pos)
+    public GameObject SpawnCoin(string tag, Transform pos, float force)
     {
         if (!poolDictionary.ContainsKey(tag))
         {
@@ -126,7 +126,7 @@ public class ObjectPoolNS : MonoBehaviour
 
         Rigidbody2D proj_rb = objToSpawn.GetComponent<Rigidbody2D>();
         proj_rb.velocity = Vector2.zero;
-        proj_rb.AddForce(pos.up * speed, ForceMode2D.Impulse);
+        proj_rb.AddForce(pos.up * force, ForceMode2D.Impulse);
         //objToSpawn.GetComponent<Rigidbody2D>().AddForce(pos.up * speed, ForceMode2D.Impulse);
         poolDictionary[tag].Enqueue(objToSpawn);
 
@@ -190,9 +190,9 @@ public class ObjectPoolNS : MonoBehaviour
         SpawnParticle(tags[Random.Range(0, tags.Length)], pos.position);
     }
 
-    public void SpawnCoin(Transform pos)
+    public void SpawnCoin(Transform pos, float force)
     {
-        SpawnCoin(tags[0], pos);
+        SpawnCoin(tags[0], pos, force);
     }
 
     IEnumerator setfalse(GameObject obj)

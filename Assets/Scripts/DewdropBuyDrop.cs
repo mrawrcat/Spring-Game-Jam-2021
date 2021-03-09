@@ -14,6 +14,8 @@ public class DewdropBuyDrop : MonoBehaviour
     private bool inDewdrop;
 
     [SerializeField]
+    private float spawnforce;
+    [SerializeField]
     private ObjectPoolNS dewdropPool;
     [SerializeField]
     private Transform dropPoint1;
@@ -33,7 +35,7 @@ public class DewdropBuyDrop : MonoBehaviour
 
         if (progress == 100)
         {
-            dewdropPool.SpawnCoin(dropPoint1);
+            dewdropPool.SpawnCoin(dropPoint1, spawnforce);
             progress = 0;
             dropActionRate = 1;
 
