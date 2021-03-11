@@ -13,7 +13,7 @@ public class Petal : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            GameManager.manager.apple++;
+            GameManager.manager.Spring_Dewdrop++;
             gameObject.SetActive(false);
             transform.parent = objectParent;
 

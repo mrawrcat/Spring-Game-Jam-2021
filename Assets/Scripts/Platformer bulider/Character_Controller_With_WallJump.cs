@@ -90,6 +90,17 @@ public class Character_Controller_With_WallJump : MonoBehaviour
             groundTouch = true;
             //TouchGround();
         }
+        else if(isGrounded && groundTouch)
+        {
+
+            transform.parent = Physics2D.OverlapBox((Vector2)transform.position + bottomOffset, boxSize, 0, whatIsGround).gameObject.transform;
+            //Debug.Log(Physics2D.OverlapBox((Vector2)transform.position + bottomOffset, boxSize, 0, whatIsGround).name);
+        }
+        else
+        {
+            transform.parent = null;
+        }
+
 
         Walk(dir);
         WallSlide();
@@ -140,7 +151,7 @@ public class Character_Controller_With_WallJump : MonoBehaviour
             {
                 //anim.SetTrigger("jump");
                 Jump(Vector2.up);
-                groundcounter = 0;
+                groundcounter = -1;
                 
             }
             if (onWall && !isGrounded)
@@ -230,6 +241,7 @@ public class Character_Controller_With_WallJump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (collision.transform.tag == "Platform")
         {
             transform.parent = collision.transform;
