@@ -18,7 +18,7 @@ public class GameHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dewdropText.text = "dewdrop: " + GameManager.manager.Spring_Dewdrop.ToString("F0");
-        appleText.text = "apple: " + GameManager.manager.apple.ToString("F0");
+        dewdropText.text = GameManager.manager.Spring_Dewdrop.ToString("F0");
+        appleText.text = GameManager.manager.apple.ToString("F0");
     }
 }

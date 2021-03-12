@@ -17,7 +17,7 @@ public class Character_Controller_With_WallJump : MonoBehaviour
     private SpriteRenderer sr;
     private bool faceR = true;
 
-    private bool canMove;
+    //private bool canMove;
     private bool wallGrab;
     [SerializeField]
     private bool wallJumped;
@@ -104,8 +104,8 @@ public class Character_Controller_With_WallJump : MonoBehaviour
 
         Walk(dir);
         WallSlide();
-
         JumpCheck();
+
     }
 
     private void FixedUpdate()
@@ -130,6 +130,7 @@ public class Character_Controller_With_WallJump : MonoBehaviour
     private void Jump(Vector2 dir)
     {
         rb2d.velocity = dir * jumpForce;
+        groundcounter = 0;
     }
 
     private void JumpCheck()
@@ -164,8 +165,8 @@ public class Character_Controller_With_WallJump : MonoBehaviour
 
     private void WallJump()
     {
-        StopCoroutine(DisableMovement(0));
-        StartCoroutine(DisableMovement(.01f));
+        //StopCoroutine(DisableMovement(0));
+        //StartCoroutine(DisableMovement(.01f));
         if (wallSide == -1)
         {
             rb2d.velocity = WallJumpLeft + Vector2.left;
@@ -234,9 +235,9 @@ public class Character_Controller_With_WallJump : MonoBehaviour
 
     IEnumerator DisableMovement(float time)
     {
-        canMove = false;
+        //canMove = false;
         yield return new WaitForSeconds(time);
-        canMove = true;
+        //canMove = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
