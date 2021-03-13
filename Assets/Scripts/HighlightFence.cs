@@ -8,17 +8,24 @@ public class HighlightFence : MonoBehaviour
     private Sprite full_highlight, half_highlight, dead_highlight, full_no_highlight, half_no_highlight, dead_no_highlight;
     private SpriteRenderer spriterenderer;
     private bool inFence;
-    private float health; //later get this from parent object script
+    private Fence fence;
+    [SerializeField]
+    private float health;
+    private float reqAmt;
+    [SerializeField]
+    private bool touchingVarmint;
     // Start is called before the first frame update
     void Start()
     {
         spriterenderer = GetComponent<SpriteRenderer>();
+        fence = GetComponentInParent<Fence>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        health = GetComponentInParent<Fence>().health;
+        crappyReq();
+        health = fence.health;
         if (inFence)
         {
             if(health >= 100)
@@ -40,13 +47,22 @@ public class HighlightFence : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if(health < 100 && health +25 <= 100)
+                if(health < 100 && health + 25 <= 100 && health != 0)
                 {
-                    GetComponentInParent<Fence>().health += 25;
+                    GameManager.manager.Spring_Dewdrop -= reqAmt;
+                    fence.health += 25;
                 }
-                else if(health + 25 > 100)
+                else if(health + 25 > 100 && health !> 100 && health != 0)
                 {
-                    GetComponentInParent<Fence>().health = 100;
+                    GameManager.manager.Spring_Dewdrop -= reqAmt;
+                    fence.health = 100;
+                }
+                else if (health <=  0)
+                {
+                    if (!touchingVarmint)
+                    {
+                        fence.health += 25;
+                    }
                 }
             }
         }
@@ -68,11 +84,27 @@ public class HighlightFence : MonoBehaviour
         
     }
 
+    private void crappyReq()
+    {
+        if(health <= 0)
+        {
+            reqAmt = 5;
+        }
+        else
+        {
+            reqAmt = 1;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             inFence = true;
+        }
+        if(collision.tag == "Enemy")
+        {
+            touchingVarmint = true;
         }
     }
 
@@ -82,6 +114,10 @@ public class HighlightFence : MonoBehaviour
         {
             inFence = true;
         }
+        if (collision.tag == "Enemy")
+        {
+            touchingVarmint = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -89,6 +125,10 @@ public class HighlightFence : MonoBehaviour
         if (collision.tag == "Player")
         {
             inFence = false;
+        }
+        if (collision.tag == "Enemy")
+        {
+            touchingVarmint = false;
         }
     }
 }

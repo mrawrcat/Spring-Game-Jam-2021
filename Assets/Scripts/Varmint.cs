@@ -11,21 +11,21 @@ public class Varmint : MonoBehaviour
     private float speed = 1f;
     private bool faceR = false;
     private float health = 100;
+
     [Header("Obstacle Detection")]
     [SerializeField]
-    private Transform detection;
+    private Transform atkPos;
     [SerializeField]
     private bool detectedObstacle = false;
     [SerializeField]
     private LayerMask whatIsObstacle;
-    
-
+    [SerializeField]
+    private Vector2 boxSize;
+  
     [Header("Attack")]
     [SerializeField]
     private float atkRate;
     private float atkTimer;
-    [SerializeField]
-    private GameObject detectedObstacleObj;
    
     // Start is called before the first frame update
     void Start()
@@ -38,6 +38,7 @@ public class Varmint : MonoBehaviour
     // Update is called once per frame 
     void Update()
     {
+        DetectObstacle();
         Vector3 scaler = transform.localScale;
         if (faceR)
         {
@@ -63,32 +64,35 @@ public class Varmint : MonoBehaviour
             rb2d.velocity = new Vector2(-speed, rb2d.velocity.y);
         }
 
-        //Detect_Obstacle();
         if(atkTimer >= 0 && detectedObstacle)
         {
             atkTimer -=  1* Time.deltaTime;
         }
 
         
-        if (atkTimer <= 0 && detectedObstacle)
-        {
-            if(detectedObstacleObj.gameObject.GetComponent<Obstacle>() != null)
-            {
-                detectedObstacleObj.gameObject.GetComponent<Obstacle>().Take_Dmg(5);
-            }
-            else if(detectedObstacleObj.gameObject.GetComponent<MainTreeBuyDrop>() != null)
-            {
-                detectedObstacleObj.gameObject.GetComponent<MainTreeBuyDrop>().Main_Tree_Take_Dmg(5);
-            }
-            atkTimer = atkRate;
-            Attack();
-            //anim.ResetTrigger("Attack");
-        }
+        
         
         
     }
 
-    
+    private void DetectObstacle()
+    {
+        detectedObstacle = Physics2D.OverlapBox((Vector2)atkPos.position, boxSize, 0, whatIsObstacle);
+        Collider2D obstacle = Physics2D.OverlapBox((Vector2)atkPos.position, boxSize, 0, whatIsObstacle);
+        if (atkTimer <= 0 && detectedObstacle)
+        {
+            if(obstacle.GetComponent<Fence>() != null)
+            {
+                obstacle.GetComponent<Fence>().TakeDmg(1);
+            }
+            else if(obstacle.GetComponent<MainTreeBuyDrop>() != null)
+            {
+                obstacle.GetComponent<MainTreeBuyDrop>().Main_Tree_Take_Dmg(1);
+            }
+            atkTimer = atkRate;
+            Attack();
+        }
+    }
     
     private void Attack()
     {
@@ -105,48 +109,12 @@ public class Varmint : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Obstacle")
-        {
-            detectedObstacle = true;
-            detectedObstacleObj = collision.gameObject;
-        }
-        if(collision.tag == "Main Tree")
-        {
-            detectedObstacle = true;
-            detectedObstacleObj = collision.gameObject;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Obstacle")
-        {
-            detectedObstacle = true;
-            detectedObstacleObj = collision.gameObject;
-        }
-        if (collision.tag == "Main Tree")
-        {
-            detectedObstacle = true;
-            detectedObstacleObj = collision.gameObject;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Obstacle")
-        {
-            detectedObstacle = false;
-            detectedObstacleObj = null;
-        }
-        if (collision.tag == "Main Tree")
-        {
-            detectedObstacle = true;
-            detectedObstacleObj = collision.gameObject;
-        }
-    }
-
     
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube((Vector2)atkPos.position, boxSize);
+        
+    }
 
 }

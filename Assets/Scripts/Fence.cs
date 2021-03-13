@@ -25,4 +25,9 @@ public class Fence : MonoBehaviour
             fence2d.enabled = true;
         }
     }
+
+    public void TakeDmg(float amt)
+    {
+        health -= amt;
+    }
 }
