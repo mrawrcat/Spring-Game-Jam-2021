@@ -50,8 +50,10 @@ public class VarmintPool : MonoBehaviour
         }
 
         GameObject objToSpawn = poolDictionary[tag].Dequeue();
-        //objToSpawn.transform.SetAsFirstSibling();
+        
+        objToSpawn.GetComponent<BunnyMove>().health = 100;
         objToSpawn.SetActive(true);
+
         objToSpawn.transform.position = pos.position;
         poolDictionary[tag].Enqueue(objToSpawn);
 

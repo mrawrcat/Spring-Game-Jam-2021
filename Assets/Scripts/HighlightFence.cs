@@ -49,19 +49,30 @@ public class HighlightFence : MonoBehaviour
             {
                 if(health < 100 && health + 25 <= 100 && health != 0)
                 {
-                    GameManager.manager.Spring_Dewdrop -= reqAmt;
-                    fence.health += 25;
+                    if(GameManager.manager.Spring_Dewdrop >= reqAmt)
+                    {
+                        GameManager.manager.Spring_Dewdrop -= reqAmt;
+                        fence.health += 25;
+                    }
                 }
                 else if(health + 25 > 100 && health !> 100 && health != 0)
                 {
-                    GameManager.manager.Spring_Dewdrop -= reqAmt;
-                    fence.health = 100;
+                    if(GameManager.manager.Spring_Dewdrop >= reqAmt)
+                    {
+                        GameManager.manager.Spring_Dewdrop -= reqAmt;
+                        fence.health = 100;
+                    }
+                    
                 }
                 else if (health <=  0)
                 {
                     if (!touchingVarmint)
                     {
-                        fence.health += 25;
+                        if (GameManager.manager.Spring_Dewdrop >= reqAmt)
+                        {
+                            GameManager.manager.Spring_Dewdrop -= reqAmt;
+                            fence.health += 25;
+                        }
                     }
                 }
             }

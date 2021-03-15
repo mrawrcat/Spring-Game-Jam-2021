@@ -83,7 +83,7 @@ public class VarmintSpawner : MonoBehaviour
         remainingSpawnAmt = amtToSpawn;
         state = State.SpawningWave;
         waveNumber++;
-        amtToSpawn = amtToSpawn + (3 * waveNumber);
+        amtToSpawn = 1 + (3 * waveNumber);
         //transform.position = new Vector3(0, 0, 0);
     }
 }
