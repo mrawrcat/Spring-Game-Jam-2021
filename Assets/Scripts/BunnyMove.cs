@@ -83,6 +83,10 @@ public class BunnyMove : MonoBehaviour
                     atkTimer = atkRate;
                 }
             }
+            else if(obstacle.GetComponent<MainTree>() != null)
+            {
+                obstacle.GetComponent<MainTree>().TakeDmg(1);
+            }
         }
 
         

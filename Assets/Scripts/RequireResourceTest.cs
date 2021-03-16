@@ -41,10 +41,10 @@ public class RequireResourceTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (GameManager.manager.apple >= reqApple && GameManager.manager.Spring_Dewdrop >= reqDewdrop)
+            if (GameManager.manager.apple >= reqApple && GameManager.manager.dewdrop >= reqDewdrop)
             {
                 GameManager.manager.apple -= reqApple;
-                GameManager.manager.Spring_Dewdrop -= reqDewdrop;
+                GameManager.manager.dewdrop -= reqDewdrop;
                 level++;
             }
         }

@@ -45,21 +45,21 @@ public class HighlightFence : MonoBehaviour
                 spriterenderer.sprite = dead_highlight;
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 if(health < 100 && health + 25 <= 100 && health != 0)
                 {
-                    if(GameManager.manager.Spring_Dewdrop >= reqAmt)
+                    if(GameManager.manager.dewdrop >= reqAmt)
                     {
-                        GameManager.manager.Spring_Dewdrop -= reqAmt;
+                        GameManager.manager.dewdrop -= reqAmt;
                         fence.health += 25;
                     }
                 }
                 else if(health + 25 > 100 && health !> 100 && health != 0)
                 {
-                    if(GameManager.manager.Spring_Dewdrop >= reqAmt)
+                    if(GameManager.manager.dewdrop >= reqAmt)
                     {
-                        GameManager.manager.Spring_Dewdrop -= reqAmt;
+                        GameManager.manager.dewdrop -= reqAmt;
                         fence.health = 100;
                     }
                     
@@ -68,9 +68,9 @@ public class HighlightFence : MonoBehaviour
                 {
                     if (!touchingVarmint)
                     {
-                        if (GameManager.manager.Spring_Dewdrop >= reqAmt)
+                        if (GameManager.manager.dewdrop >= reqAmt)
                         {
-                            GameManager.manager.Spring_Dewdrop -= reqAmt;
+                            GameManager.manager.dewdrop -= reqAmt;
                             fence.health += 25;
                         }
                     }

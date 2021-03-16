@@ -6,8 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager manager;
 
-    public float Spring_Dewdrop;
+    public float dewdrop;
     public float apple;
+    public float pollen;
     public float Main_Tree_Health;
     public float Main_Tree_Level;
     private void Awake()

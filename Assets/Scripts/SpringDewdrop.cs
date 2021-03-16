@@ -8,7 +8,7 @@ public class SpringDewdrop : MonoBehaviour
     {
         if(collision.collider.tag == "Player")
         {
-            GameManager.manager.Spring_Dewdrop++;
+            GameManager.manager.dewdrop++;
             gameObject.SetActive(false);
         }
     }

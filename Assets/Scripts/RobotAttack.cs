@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighlightRobot : MonoBehaviour
+public class RobotAttack : MonoBehaviour
 {
     private enum State
     {
@@ -11,9 +11,8 @@ public class HighlightRobot : MonoBehaviour
     }
     private State state;
 
-
+    //not moving right now program in move to area when rabbits in area
     private bool faceR;
-    private bool inTree;
     private bool foundEnemy;
     [SerializeField]
     private LayerMask whatIsEnemy;
@@ -24,6 +23,7 @@ public class HighlightRobot : MonoBehaviour
     [SerializeField]
     private float atkRate;
     private float atkTimer;
+    private float health;
     private Rigidbody2D rb2d;
     private Animator anim;
     // Start is called before the first frame update
@@ -32,11 +32,14 @@ public class HighlightRobot : MonoBehaviour
         state = State.Idle;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        /*
         Vector3 scaler = transform.localScale;
         if (faceR)
         {
@@ -48,7 +51,7 @@ public class HighlightRobot : MonoBehaviour
             scaler.x = -1;
             transform.localScale = scaler;
         }
-
+        */
         atkTimer -= Time.deltaTime;
 
         foundEnemy = Physics2D.OverlapBox((Vector2)atkPos.position, atkBoxSize, 0, whatIsEnemy);
@@ -56,40 +59,30 @@ public class HighlightRobot : MonoBehaviour
 
         if (foundEnemy)
         {
+            Debug.Log(enemies.Length);
             foreach(Collider2D enemy in enemies)
             {
+                
                 if(enemy.GetComponent<BunnyMove>() != null)
                 {
-                    enemy.GetComponent<BunnyMove>().TakeDmg(10);
+                    if(atkTimer <= 0)
+                    {
+                        enemy.GetComponent<BunnyMove>().TakeDmg(10);
+                        atkTimer = atkRate;
+                        anim.SetTrigger("Attack");
+                    }
                 }
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Attack()
     {
-        if (collision.tag == "Player")
+        if(atkTimer <= 0)
         {
-            inTree = true;
+            anim.SetTrigger("Attack");
         }
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            inTree = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            inTree = false;
-        }
-    }
-
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

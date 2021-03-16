@@ -9,16 +9,15 @@ public class GameHelper : MonoBehaviour
     private Text dewdropText;
     [SerializeField]
     private Text appleText;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private Text pollenText;
+    
 
     // Update is called once per frame
     void Update()
     {
-        dewdropText.text = GameManager.manager.Spring_Dewdrop.ToString("F0");
+        dewdropText.text = GameManager.manager.dewdrop.ToString("F0");
         appleText.text = GameManager.manager.apple.ToString("F0");
+        pollenText.text = GameManager.manager.pollen.ToString("F0");
     }
 }

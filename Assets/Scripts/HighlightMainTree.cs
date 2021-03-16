@@ -35,23 +35,36 @@ public class HighlightMainTree : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        
+
         switch (state)
         {
             case State.NotSpawning:
                 if (inTree)
                 {
                     spriterenderer.sprite = not_smile_highlight;
+                    if (Input.GetKeyDown(KeyCode.W))
+                    {
+                        if(GameManager.manager.apple > 2)//required amt to upgrade
+                        {
+                            //lvl up -> amtToSpawn = # * lvl
+                        }
+                    }
                 }
                 else
                 {
                     spriterenderer.sprite = not_smile_not_highlight;
                 }
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.S))
                 {
-                    remainingSpawnAmt += amtToSpawn;
-                    nextSpawnTimer = .1f;
-                    state = State.Spawning;
+                    if (inTree)
+                    {
+                        remainingSpawnAmt += amtToSpawn;
+                        nextSpawnTimer = .1f;
+                        state = State.Spawning;
+                    }
+                    
 
                 }
                 break;

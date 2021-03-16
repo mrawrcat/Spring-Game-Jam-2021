@@ -44,13 +44,13 @@ public class MainTreeBuyDrop : MonoBehaviour
         amtNeededTxt.text = amtNeeded.ToString();
 
 
-        if(GameManager.manager.Spring_Dewdrop >= amtNeeded)
+        if(GameManager.manager.dewdrop >= amtNeeded)
         {
             if (progress == 100)
             {
 
                 applePool.SpawnCoin(dropPoint1, spawnforce);
-                GameManager.manager.Spring_Dewdrop -= amtNeeded;
+                GameManager.manager.dewdrop -= amtNeeded;
                 amtNeeded *= 2;
                 level++;
                 progress = 0;
