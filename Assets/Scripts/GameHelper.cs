@@ -20,4 +20,9 @@ public class GameHelper : MonoBehaviour
         appleText.text = GameManager.manager.apple.ToString("F0");
         pollenText.text = GameManager.manager.pollen.ToString("F0");
     }
+
+    public void ResetDead()
+    {
+        GameManager.manager.dead = false;
+    }
 }

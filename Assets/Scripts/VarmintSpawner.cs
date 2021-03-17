@@ -14,7 +14,7 @@ public class VarmintSpawner : MonoBehaviour
     private State state;
     [SerializeField]
     private Text waveTxt, tilNextWaveTxt;
-    private int waveNumber;
+    public int waveNumber;
     [SerializeField]
     private float timeTilSpawn; //time in between wave spawn
     private float spawnTime;
@@ -31,6 +31,7 @@ public class VarmintSpawner : MonoBehaviour
         state = State.WaitingToSpawnNextWave;
         varmintPool = GetComponent<VarmintPool>();
         spawnTime = timeTilSpawn;
+        waveNumber = 0;
         //amtToSpawn = 1;
     }
 
@@ -42,7 +43,10 @@ public class VarmintSpawner : MonoBehaviour
         switch (state)
         {
             case State.WaitingToSpawnNextWave:
-                spawnTime -= Time.deltaTime;
+                if (!GameManager.manager.dead)
+                {
+                    spawnTime -= Time.deltaTime;
+                }
                 if (spawnTime <= 0)
                 {
                     SpawnWave();

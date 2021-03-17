@@ -12,6 +12,7 @@ public class RobotAttack : MonoBehaviour
     private State state;
 
     //not moving right now program in move to area when rabbits in area
+    [SerializeField]
     private bool faceR;
     private bool foundEnemy;
     [SerializeField]
@@ -23,15 +24,16 @@ public class RobotAttack : MonoBehaviour
     [SerializeField]
     private float atkRate;
     private float atkTimer;
-    private float health;
     private Rigidbody2D rb2d;
     private Animator anim;
+    private RobotHealth robohealth;
     // Start is called before the first frame update
     void Start()
     {
         state = State.Idle;
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        robohealth = GetComponentInChildren<RobotHealth>();
         
     }
 
@@ -39,19 +41,19 @@ public class RobotAttack : MonoBehaviour
     void Update()
     {
         
-        /*
+        //robot originally faces left -> face right is -1
         Vector3 scaler = transform.localScale;
         if (faceR)
-        {
-            scaler.x = 1;
-            transform.localScale = scaler;
-        }
-        else
         {
             scaler.x = -1;
             transform.localScale = scaler;
         }
-        */
+        else
+        {
+            scaler.x = 1;
+            transform.localScale = scaler;
+        }
+        
         atkTimer -= Time.deltaTime;
 
         foundEnemy = Physics2D.OverlapBox((Vector2)atkPos.position, atkBoxSize, 0, whatIsEnemy);
@@ -60,18 +62,21 @@ public class RobotAttack : MonoBehaviour
         if (foundEnemy)
         {
             Debug.Log(enemies.Length);
-            foreach(Collider2D enemy in enemies)
+            if (atkTimer <= 0)
             {
-                
-                if(enemy.GetComponent<BunnyMove>() != null)
+                if(robohealth.health > 0)
                 {
-                    if(atkTimer <= 0)
+                    foreach (Collider2D enemy in enemies)
                     {
-                        enemy.GetComponent<BunnyMove>().TakeDmg(10);
-                        atkTimer = atkRate;
-                        anim.SetTrigger("Attack");
+                        if (enemy.GetComponent<BunnyMove>() != null)
+                        {
+                            enemy.GetComponent<BunnyMove>().TakeDmg(1);
+                        }
                     }
+                    anim.SetTrigger("Attack");
+                    atkTimer = atkRate;
                 }
+                
             }
         }
     }
@@ -81,6 +86,14 @@ public class RobotAttack : MonoBehaviour
         if(atkTimer <= 0)
         {
             anim.SetTrigger("Attack");
+        }
+    }
+
+    public void DecreaseAtkRate()
+    {
+        if(atkRate > .1f)
+        {
+            atkRate -= .05f;
         }
     }
     void OnDrawGizmos()

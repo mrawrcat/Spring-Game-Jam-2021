@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7505348845413438422}
   m_Layer: 6
   m_Name: Bunny
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   atkPos: {fileID: 4605679980915982743}
   atkBoxSize: {x: 0.5, y: 0.8}
   atkRate: 1
+  atkPower: 0
 --- !u!95 &7505348845413438422
 Animator:
   serializedVersion: 3

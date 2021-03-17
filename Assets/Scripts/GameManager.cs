@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public float apple;
     public float pollen;
     public float Main_Tree_Health;
-    public float Main_Tree_Level;
+    public bool dead;
     private void Awake()
     {
         if (manager == null)
@@ -21,6 +21,14 @@ public class GameManager : MonoBehaviour
         else if (manager != this)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if(Main_Tree_Health <= 0)
+        {
+            dead = true;
         }
     }
 }

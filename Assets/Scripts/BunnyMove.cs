@@ -23,14 +23,19 @@ public class BunnyMove : MonoBehaviour
     [SerializeField]
     private float atkRate;
     private float atkTimer;
+    [SerializeField]
+    private float atkPower;
     private Rigidbody2D rb2d;
     private Animator anim;
+    private VarmintSpawner wavespawner;
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        wavespawner = FindObjectOfType<VarmintSpawner>();
         health = 1;
+        
     }
 
     // Update is called once per frame
@@ -41,7 +46,7 @@ public class BunnyMove : MonoBehaviour
             health = 0;
             gameObject.SetActive(false);
         }
-
+        atkPower = 1 * wavespawner.waveNumber;
         Vector3 scaler = transform.localScale;
         if (faceR)
         {
@@ -79,13 +84,27 @@ public class BunnyMove : MonoBehaviour
             {
                 if(atkTimer < 0)
                 {
-                    obstacle.GetComponent<Fence>().TakeDmg(1);
+                    obstacle.GetComponent<Fence>().TakeDmg(atkPower);
                     atkTimer = atkRate;
                 }
             }
             else if(obstacle.GetComponent<MainTree>() != null)
             {
-                obstacle.GetComponent<MainTree>().TakeDmg(1);
+                if (atkTimer < 0)
+                {
+                    obstacle.GetComponent<MainTree>().TakeDmg(atkPower);
+                    atkTimer = atkRate;
+                }
+                
+            }
+            else if(obstacle.GetComponent<RobotHealth>() != null)
+            {
+                if (atkTimer < 0)
+                {
+                    obstacle.GetComponent<RobotHealth>().TakeDmg(atkPower);
+                    atkTimer = atkRate;
+                }
+                
             }
         }
 
