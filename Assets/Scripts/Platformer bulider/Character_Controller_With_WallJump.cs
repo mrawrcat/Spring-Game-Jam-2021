@@ -51,7 +51,7 @@ public class Character_Controller_With_WallJump : MonoBehaviour
     private int wallSide;
     [SerializeField]
     private LayerMask whatIsGround;
-
+    private bool cantMove;
 
     // Start is called before the first frame update
     private void Start()
@@ -73,7 +73,7 @@ public class Character_Controller_With_WallJump : MonoBehaviour
         onWall = Physics2D.OverlapBox((Vector2)transform.position + rOffset, rBoxSize, 0, whatIsGround) || Physics2D.OverlapBox((Vector2)transform.position + lOffset, lBoxSize, 0, whatIsGround);
         onLeftWall = Physics2D.OverlapBox((Vector2)transform.position + lOffset, lBoxSize, 0, whatIsGround);
         onRightWall = Physics2D.OverlapBox((Vector2)transform.position + rOffset, rBoxSize, 0, whatIsGround);
-
+        cantMove = GameManager.manager.dead;
         if (onRightWall)
         {
             wallSide = 1;
@@ -101,23 +101,25 @@ public class Character_Controller_With_WallJump : MonoBehaviour
             transform.parent = null;
         }
 
-
+        
         Walk(dir);
-        WallSlide();
-        JumpCheck();
+        if (!cantMove)
+        {
+            WallSlide();
+            JumpCheck();
+        }
+        
 
-    }
-
-    private void FixedUpdate()
-    {
-
-        //rb2d.velocity = new Vector2(moveInputX * speed, rb2d.velocity.y);
     }
 
 
     private void Walk(Vector2 dir)
     {
-        if (!wallJumped)
+        if (cantMove)
+        {
+            rb2d.velocity = new Vector2(dir.x * 0, rb2d.velocity.y);
+        }
+        else if (!wallJumped)
         {
             rb2d.velocity = new Vector2(dir.x * speed, rb2d.velocity.y);
         }

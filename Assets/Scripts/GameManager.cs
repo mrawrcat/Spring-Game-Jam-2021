@@ -30,5 +30,9 @@ public class GameManager : MonoBehaviour
         {
             dead = true;
         }
+        else
+        {
+            dead = false;
+        }
     }
 }

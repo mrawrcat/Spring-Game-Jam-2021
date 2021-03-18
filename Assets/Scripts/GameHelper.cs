@@ -11,7 +11,8 @@ public class GameHelper : MonoBehaviour
     private Text appleText;
     [SerializeField]
     private Text pollenText;
-    
+    [SerializeField]
+    private GameObject gameOverPanel;
 
     // Update is called once per frame
     void Update()
@@ -19,10 +20,23 @@ public class GameHelper : MonoBehaviour
         dewdropText.text = GameManager.manager.dewdrop.ToString("F0");
         appleText.text = GameManager.manager.apple.ToString("F0");
         pollenText.text = GameManager.manager.pollen.ToString("F0");
+
+        if (GameManager.manager.dead)
+        {
+            gameOverPanel.SetActive(true);
+        }
+        else
+        {
+            gameOverPanel.SetActive(false);
+        }
     }
 
     public void ResetDead()
     {
+        GameManager.manager.Main_Tree_Health = 100;
         GameManager.manager.dead = false;
+        GameManager.manager.dewdrop = 10;
+        GameManager.manager.apple = 10;
+        GameManager.manager.pollen = 10;
     }
 }

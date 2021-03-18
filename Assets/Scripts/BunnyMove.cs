@@ -28,6 +28,7 @@ public class BunnyMove : MonoBehaviour
     private Rigidbody2D rb2d;
     private Animator anim;
     private VarmintSpawner wavespawner;
+    private Transform treeTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,7 @@ public class BunnyMove : MonoBehaviour
         anim = GetComponent<Animator>();
         wavespawner = FindObjectOfType<VarmintSpawner>();
         health = 1;
+        treeTransform = FindObjectOfType<MainTree>().transform;
         
     }
 
@@ -65,12 +67,12 @@ public class BunnyMove : MonoBehaviour
         Collider2D obstacle = Physics2D.OverlapBox((Vector2)atkPos.position, atkBoxSize, 0, whatIsObstacle);
         if (isGrounded && !foundObstacle)
         {
-            if(transform.position.x < 0)
+            if(transform.position.x < treeTransform.position.x)
             {
                 faceR = true;
                 Jump(direction);
             }
-            else if(transform.position.x > 0)
+            else if(transform.position.x > treeTransform.position.x)
             {
                 faceR = false;
                 
