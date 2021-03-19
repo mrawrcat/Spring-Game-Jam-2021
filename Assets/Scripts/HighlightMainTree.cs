@@ -79,7 +79,7 @@ public class HighlightMainTree : MonoBehaviour
                 if (inTree)
                 {
                     spriterenderer.sprite = not_smile_highlight;
-                    if (Input.GetKeyDown(KeyCode.W))
+                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                     {
                         if(GameManager.manager.apple >= appleReqAmt && GameManager.manager.pollen >= pollenReqAmt)//required amt to upgrade
                         {
@@ -99,7 +99,7 @@ public class HighlightMainTree : MonoBehaviour
                     spriterenderer.sprite = not_smile_not_highlight;
                 }
 
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     if (inTree)
                     {

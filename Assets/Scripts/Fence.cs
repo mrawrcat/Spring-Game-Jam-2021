@@ -11,6 +11,7 @@ public class Fence : MonoBehaviour
     void Start()
     {
         fence2d = GetComponent<BoxCollider2D>();
+        health = 100;
     }
 
     // Update is called once per frame

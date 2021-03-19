@@ -19,12 +19,12 @@ public class HighlightFence : MonoBehaviour
     {
         spriterenderer = GetComponent<SpriteRenderer>();
         fence = GetComponentInParent<Fence>();
+        reqAmt = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        crappyReq();
         health = fence.health;
         if (inFence)
         {
@@ -45,7 +45,7 @@ public class HighlightFence : MonoBehaviour
                 spriterenderer.sprite = dead_highlight;
             }
 
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 if(health < 100 && health + 25 <= 100 && health != 0)
                 {
@@ -95,17 +95,6 @@ public class HighlightFence : MonoBehaviour
         
     }
 
-    private void crappyReq()
-    {
-        if(health <= 0)
-        {
-            reqAmt = 5;
-        }
-        else
-        {
-            reqAmt = 1;
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

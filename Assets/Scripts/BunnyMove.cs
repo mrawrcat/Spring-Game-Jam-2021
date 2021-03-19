@@ -48,6 +48,7 @@ public class BunnyMove : MonoBehaviour
             health = 0;
             gameObject.SetActive(false);
         }
+
         atkPower = 1 * wavespawner.waveNumber;
         Vector3 scaler = transform.localScale;
         if (faceR)
@@ -128,7 +129,16 @@ public class BunnyMove : MonoBehaviour
     {
         health -= dmg;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Main Tree")
+        {
+            TakeDmg(health);
+        }
+    }
 
+    
+    
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

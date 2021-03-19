@@ -67,7 +67,7 @@ public class HighlightAppleTree : MonoBehaviour
                 if (inTree)
                 {
                     spriterenderer.sprite = highlight;
-                    if (Input.GetKeyDown(KeyCode.W))
+                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                     {
                         if (GameManager.manager.dewdrop >= dewReqAmt && GameManager.manager.pollen >= pollenReqAmt)//required amt to upgrade
                         {
@@ -86,7 +86,7 @@ public class HighlightAppleTree : MonoBehaviour
                     spriterenderer.sprite = not_highlight;
                 }
 
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     if (inTree)
                     {

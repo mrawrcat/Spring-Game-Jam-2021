@@ -13,6 +13,7 @@ public class GameHelper : MonoBehaviour
     private Text pollenText;
     [SerializeField]
     private GameObject gameOverPanel;
+    
 
     // Update is called once per frame
     void Update()
@@ -38,5 +39,15 @@ public class GameHelper : MonoBehaviour
         GameManager.manager.dewdrop = 10;
         GameManager.manager.apple = 10;
         GameManager.manager.pollen = 10;
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }

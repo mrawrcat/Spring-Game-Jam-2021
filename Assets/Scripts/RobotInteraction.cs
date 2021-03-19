@@ -47,7 +47,7 @@ public class RobotInteraction : MonoBehaviour
             UIstuff.SetActive(true);
             if (!robohealth.enemyInside)
             {
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     if (GameManager.manager.apple >= appleReqAmt && GameManager.manager.pollen >= pollenReqAmt)
                     {

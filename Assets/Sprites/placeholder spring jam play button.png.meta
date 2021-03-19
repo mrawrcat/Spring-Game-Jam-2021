@@ -1,31 +1,13 @@
 fileFormatVersion: 2
-guid: 3d7fa1becc92ca04999d8740975d4567
+guid: 867b31046ef966942bc48d4aa97438ab
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3233502143114236104
-    second: placeholder spring jam character_0
+      213: -6987505940340166057
+    second: placeholder spring jam play button_0
   - first:
-      213: -5235679052783912298
-    second: placeholder spring jam character_1
-  - first:
-      213: -1097849527485374629
-    second: placeholder spring jam character_2
-  - first:
-      213: -6261769137619502245
-    second: placeholder spring jam character_3
-  - first:
-      213: -7814886319237047445
-    second: placeholder spring jam character_4
-  - first:
-      213: 7644842603324584853
-    second: placeholder spring jam character_5
-  - first:
-      213: -7566984795105714382
-    second: placeholder spring jam character_6
-  - first:
-      213: 2405805880099156990
-    second: placeholder spring jam character_7
+      213: -9200311632200407427
+    second: placeholder spring jam play button_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -151,12 +133,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: placeholder spring jam character_0
+      name: placeholder spring jam play button_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
+        width: 32
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -165,40 +147,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83f2633ceea4023d0800000000000000
-      internalID: -3233502143114236104
+      spriteID: 752b7106e54670f90800000000000000
+      internalID: -6987505940340166057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: placeholder spring jam character_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69a7cdc24a12757b0800000000000000
-      internalID: -5235679052783912298
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: placeholder spring jam character_2
+      name: placeholder spring jam play button_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 16
+        width: 32
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -207,113 +168,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5f5761eba7a3c0f0800000000000000
-      internalID: -1097849527485374629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: placeholder spring jam character_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b5b7fa6452ab919a0800000000000000
-      internalID: -6261769137619502245
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: placeholder spring jam character_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6bd0d53c42fb8390800000000000000
-      internalID: -7814886319237047445
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: placeholder spring jam character_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5933fe6f7dfe71a60800000000000000
-      internalID: 7644842603324584853
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: placeholder spring jam character_6
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23f11f2ab6bacf690800000000000000
-      internalID: -7566984795105714382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: placeholder spring jam character_7
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef33bd193b3236120800000000000000
-      internalID: 2405805880099156990
+      spriteID: d76eccbd05de15080800000000000000
+      internalID: -9200311632200407427
       vertices: []
       indices: 
       edges: []

@@ -78,7 +78,7 @@ public class SunshinePlant : MonoBehaviour
 
     private void Interact()
     {
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (!fed)
             {
