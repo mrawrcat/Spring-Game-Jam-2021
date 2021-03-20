@@ -48,3 +48,4 @@ MonoBehaviour:
   pollen: 0
   Main_Tree_Health: 100
   dead: 0
+  tutorialOn: 1
