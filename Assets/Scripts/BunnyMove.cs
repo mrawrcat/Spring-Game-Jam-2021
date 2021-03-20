@@ -135,6 +135,10 @@ public class BunnyMove : MonoBehaviour
         {
             TakeDmg(health);
         }
+        if(collision.gameObject.layer == 9)
+        {
+            Debug.Log("hit obstacle");
+        }
     }
 
     

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float pollen;
     public float Main_Tree_Health;
     public bool dead;
+    public bool tutorialOn;
     private void Awake()
     {
         if (manager == null)
@@ -22,6 +23,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void Start()
+    {
+        tutorialOn = true;
     }
 
     private void Update()

@@ -36,9 +36,9 @@ public class GameHelper : MonoBehaviour
     {
         GameManager.manager.Main_Tree_Health = 100;
         GameManager.manager.dead = false;
-        GameManager.manager.dewdrop = 10;
-        GameManager.manager.apple = 10;
-        GameManager.manager.pollen = 10;
+        GameManager.manager.dewdrop = 0;
+        GameManager.manager.apple = 0;
+        GameManager.manager.pollen = 0;
     }
 
     public void PauseGame()

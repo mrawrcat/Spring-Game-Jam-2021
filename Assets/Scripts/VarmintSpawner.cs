@@ -14,6 +14,8 @@ public class VarmintSpawner : MonoBehaviour
     private State state;
     [SerializeField]
     private Text waveTxt, tilNextWaveTxt;
+    [SerializeField]
+    private Text gameOverWaveTxt;
     public int waveNumber;
     [SerializeField]
     private float timeTilSpawn; //time in between wave spawn
@@ -40,6 +42,7 @@ public class VarmintSpawner : MonoBehaviour
     {
         waveTxt.text = "Wave: " + waveNumber.ToString("F0");
         tilNextWaveTxt.text = "Next Wave: " + spawnTime.ToString("F2");
+        gameOverWaveTxt.text = "You finished at Wave: " + waveNumber.ToString("F0");
         switch (state)
         {
             case State.WaitingToSpawnNextWave:
